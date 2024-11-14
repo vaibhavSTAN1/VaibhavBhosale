@@ -160,13 +160,14 @@
 
 
   </div>
-  <div class="nxt-btn">
+ <div class="nxt-btn">
     <button class="btn" onclick="showNextCard()">
       <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
         <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
         <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
       </svg>
-      <span>Next</span>
+      <span id="btnText">Next</span>
+     
     </button>
   </div>
 
@@ -212,18 +213,27 @@
 
   let currentCardIndex = 0;
   const cards = document.querySelectorAll('.card-hold .card');
+   const btnText = document.getElementById('btnText');
+  
 
-  function showNextCard() {
+   function showNextCard() {
     // Hide the current card
     cards[currentCardIndex].style.display = 'none';
 
-    // Update the index to show the next card, looping back to the start if at the end
-    currentCardIndex = (currentCardIndex + 1) % cards.length;
+    // Determine the direction of navigation
+    if (btnText.textContent === "Next") {
+      // Show the next card
+      currentCardIndex = (currentCardIndex + 1) % cards.length;
+    } else if (btnText.textContent === "Back") {
+      // Show the previous card
+      currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+    }
 
-    // Show the next card
+    // Show the new card
     cards[currentCardIndex].style.display = 'block';
+
+    // Toggle the button text between 'Next' and 'Back'
+    btnText.textContent = (btnText.textContent === "Next") ? "Back" : "Next";
   }
-
 </script>
-
 </html>
