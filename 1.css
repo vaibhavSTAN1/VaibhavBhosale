@@ -518,3 +518,11 @@ position: relative;
   flex-direction: column;
   gap: 10px;
 }
+@media only screen and (max-width: 768px) {
+  .nxt-btn {
+    display: inline-block;
+    position: absolute;
+    top: 84%;
+    right: 38%;
+}
+}
